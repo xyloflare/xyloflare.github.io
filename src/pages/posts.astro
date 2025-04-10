@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Navbar from "../components/Navbar.astro"
+import Container from "../components/Container.astro"
+import Model from "../components/Model.astro"
+import { getCollection } from "astro:content";
+const posts = await getCollection('posts');
+---
+<Layout>
+  <Navbar transition:persist transition:persist-props transistion:name='navbar'/>
+  <Model transition:name='model' transition:persist-props transition:persist/>
+  <Container>
+    <div>
+      <h2 class="heading heading-underline">My Posts</h2>
+    </div>
+    {posts.map(post => <a href=`/posts/${post.slug}`>
+      <div class="post">
+          <h3 class="heading">{post.data.title}</h3>
+        <p>{post.data.share.description.length > 144 ? post.data.share.description.substring(0,144)+"..." : post.data.share.description}</p>
+        <div class="post-view">View Full Post</div>
+        <div>
+          {"--"}
+        </div>
+      </div>
+    </a>)}
+  </Container>
+</Layout>
+<style>
+  .post {
+    margin-block: 0.5rem;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    h3 {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      padding: 0;
+      margin: 0;
+      margin-top: 0.75rem;
+    }
+    .post-view {
+      margin-top: 0.5rem;
+      padding: 0.25rem;
+      //background-color: var(--surface1);
+      display: inline-block;
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+      //border: 1px solid transparent;
+      border: 0.125rem solid var(--surface1);
+    }
+  }
+  .post:hover {
+    background-color: var(--surface1);
+  }
+</style>

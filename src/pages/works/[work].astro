@@ -1,0 +1,46 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import Navbar from '../../components/Navbar.astro';
+import Model from '../../components/Model.astro';
+
+export async function getStaticPaths() {
+  const works = await getCollection('works');
+
+  return works.map((work) => {
+    return {
+      params: {
+        work: work.slug,
+      },
+      props: {
+        work,
+      },
+    };
+  });
+}
+
+interface Props {
+  work: CollectionEntry<'works'>;
+}
+
+const { work } = Astro.props;
+const { Content } = await work.render();
+---
+<Layout>
+  <Navbar transition:persist transition:persist-props transistion:name='navbar'/>
+  <Model transition:name='model' transition:persist-props transition:persist/>
+  <Container>
+    <div class="work-title">
+      <div>
+        <a href="/works/" class="link">
+          {"Works / "}
+        </a>
+        <span class="heading" style="font-size: 1.5rem;">
+          {work.data.title}
+        </span>
+      </div>
+    </div>
+    <Content/>
+  </Container>
+</Layout>

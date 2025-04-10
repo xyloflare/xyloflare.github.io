@@ -1,0 +1,198 @@
+---
+import {hero, nav} from "../js/constants.js"
+import menu from "../assets/menu.svg"
+import ThemeBtn from "../components/ThemeBtn.astro";
+---
+<nav id="navbar" class="bg-main">
+  <div>
+    <div id="title">
+      <a href="/">
+      {hero.title}
+      </a>
+    </div>
+
+    <div id="nav-links">
+        {nav.map(item => <a href={item.href}>{item.name}</a>)}
+    </div>
+
+    <div id="navbtns">
+      <ThemeBtn/>
+
+      <div class="bg-pri" id="menubtn">
+        <img src={menu.src} alt="" id="" width="20" height="20">
+      </div>
+
+      <div id="nav-menu" class="bg-main">
+        <div id="menu-links">
+          <ul>
+            <a href="/" class="menu-link-item"><li>Home</li></a>
+            {nav.map(item => <a href={item.href} class="menu-link-item"><li>{item.name}</li></a>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+<div id="dismis-overlay"></div>
+<script>
+
+const animation = [
+  { transform: "translateX(1rem)", opacity: "0" },
+  { transform: "translateX(0)", opacity: "1" }
+];
+const animation2 = [].concat(animation).reverse();
+
+const menu = document.getElementById("menu-links");
+function toggleMenu() {
+  let displayProp = (window.getComputedStyle(menu, null).display) == 'none' ? 'inline-block' : 'none';
+
+  document.getElementById('dismis-overlay')?.setAttribute("style", `display: ${displayProp} !important`)
+  if (displayProp == 'none') {
+    menu?.animate(animation2, { duration: 100, iterations: 1 });
+    setTimeout(() => {
+      menu?.setAttribute("style", `display: ${displayProp} !important`)
+    }, 110)
+  } else {
+    menu?.setAttribute("style", `display: ${displayProp} !important`)
+    menu?.animate(animation, { duration: 100, iterations: 1 });
+  }
+}
+
+document.querySelectorAll('.menu-link-item').forEach(e => {
+  e.addEventListener("click", toggleMenu)
+})
+document.getElementById("menubtn")?.addEventListener("click", toggleMenu);
+document.getElementById("dismis-overlay")?.addEventListener("click", toggleMenu);
+
+</script>
+<style>
+  #navbar {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    backdrop-filter: blur(6px);
+    background-color: rgba(var(--bg-rgbv), 0.2);
+    padding: 0;
+    margin-bottom: 0.25rem;
+    z-index: 10;
+  }
+  #navbar div {
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #navbar > div {
+    width: 50rem;
+  }
+  #title {
+    font-size: 1.25rem;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  #nav-links {
+    font-size: 1.125rem;
+    font-weight: 400;
+    gap: 1rem;
+  }
+  #nav-links a {
+    color: var(--fg);
+    text-decoration: none;
+    max-width: min-content;
+  }
+  #nav-links a:hover {
+    text-decoration: underline;
+  }
+  #navbtns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    padding: 0;
+    margin: 0;
+  }
+  #navbtns div {
+    max-height: min-content;
+    max-width: min-content;
+    padding: 0rem;
+    border-radius: 0.25rem;
+  }
+  #menubtn {
+    display: none !important;
+    margin-left: 0.25rem;
+    img {
+      padding: 0.5rem;
+      filter: var(--svg-filter-alt);
+    }
+  }
+  #nav-menu {
+    display: none !important;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+  }
+  #nav-menu > div {
+    display: none !important;
+    position: absolute;
+    right: 0rem;
+    top: 1.75rem;
+    padding: 0.5rem;
+    z-index: 10;
+    border: 1px grey solid;
+    background-color: var(--bg);
+    color: var(--fg);
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      font-size: 1.125rem;
+    }
+    a li {
+      padding-block: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 4rem;
+      border-radius: 0.25rem;
+      margin-block: 0.125rem;
+    }
+    li:hover {
+      background-color: #ffffff0f;
+    }
+  }
+  #dismis-overlay {
+    display: none !important;
+    opacity: 0.1;
+    background-color: #000;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+  }
+
+  @media screen and (max-width: 720px) {
+    #nav-links {
+      display: none !important;
+      a {
+        display: none;
+      }
+    }
+    #nav-menu {
+      display: flex !important;
+    }
+    #menubtn {
+      display: flex !important;
+    }
+  }
+  @media screen and (max-width: 850px) {
+    #navbar > div {
+      width: 100%;
+      padding-inline: 0.75rem;
+    }
+  }
+</style>

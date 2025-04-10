@@ -1,0 +1,75 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Navbar from "../components/Navbar.astro"
+import Container from "../components/Container.astro"
+import Model from "../components/Model.astro"
+import { getCollection } from "astro:content";
+const works = await getCollection('works');
+---
+<Layout>
+  <Navbar transition:persist transition:persist-props transistion:name='navbar'/>
+  <Model transition:name='model' transition:persist-props transition:persist/>
+  <Container>
+    <div>
+      <h2 class="heading heading-underline">My Works</h2>
+    </div>
+    <div id="workbox">
+      {works.map(work => 
+        <a href=`/works/${work.slug}`>
+          <div class="work">
+          <img src={work.data.share.image} alt="" width="250" >
+            <h4>{work.data.title}</h4>
+            <p>{work.data.share.description}</p>
+          </div>
+        </a>
+      )}
+    </div>
+  </Container>
+</Layout>
+<style>
+  a {
+    max-width: 47.5%;
+  }
+  #workbox {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .work {
+    padding: 0.25rem;
+    margin-block: 0.125rem;
+    margin-bottom: 2.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    h4 {
+      margin: 0;
+      padding: 0.5rem;
+    }
+    p {
+      font-size: 0.75rem;
+      margin: 0;
+      padding: 0;
+    }
+    img {
+      margin-bottom: 0.25rem;
+      width: 100%;
+      border-radius: 1rem;
+      aspect-ratio: 1.85;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .work {
+      width: 97%;
+      max-width: 97%;
+    }
+    p {
+      font-size: 1rem !important;
+    }
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
+</style>

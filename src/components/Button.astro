@@ -1,0 +1,65 @@
+---
+let type = Astro.props.type || "primary";
+let color = (type == "link" ? "btn-link" : (type == "secondary" ? "bg-sec" : "bg-pri"))
+let mini = Astro.props.mini ? "mini" : "normal";
+let animated = Astro.props.animated ? "btn-animated" : "";
+let isLink = Astro.props.href ? "btn-linked" : "";
+let link = Astro.props.href || "";
+---
+<div class={`button noselect ${color} ${mini} ${animated} ${isLink}`} data-href={link}>
+  <slot/>
+</div>
+<script>
+  import { navigate } from "astro:transitions/client";
+
+  const animation = [
+    //{ transform: "translateY(0)" },
+    //{ transform: "translateY(0.5rem)" },
+    //{ transform: "translateY(0)" }
+    { transform: "scale(1)" },
+    { transform: "scale(0.9)" },
+    { transform: "scale(1)" },
+  ];
+  document.querySelectorAll(".btn-animated")?.forEach(b => {
+    b.addEventListener("click", () => {
+      b.animate(animation, { duration: 100, iterations: 1 });
+    });
+  })
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".btn-linked")?.forEach(l => {
+      if (l.getAttribute("data-href") != "") l.addEventListener("click", () => {
+        navigate(l.getAttribute("data-href"));
+      })
+    })
+  })
+
+</script>
+<style>
+  .button {
+    border: none;
+    display: inline-flex;
+    align-self: center;
+    border-radius: 0.25rem;
+    align-items: center;
+  }
+  .normal {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 0.25rem;
+  }
+  .mini {
+    padding: 0.5rem;
+  }
+  .button:hover {
+    filter: brightness(80%);
+  }
+  .btn-link {
+    color: var(--primary);
+  }
+  .btn-link:hover {
+    background-color: rgba(var(--primary-rgbv), 0.16);
+  }
+</style>

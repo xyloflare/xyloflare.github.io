@@ -1,0 +1,61 @@
+---
+const anim = {
+  old: {
+    name: "swap",
+    duration: "0.4s",
+    easing: "ease-in-out",
+  },
+  new: {
+    name: "swap",
+    duration: "0.4s",
+    easing: "ease-in-out",
+    direction: "reverse",
+  },
+};
+const customTransition = {
+  forwards: anim,
+  backwards: anim,
+};
+---
+<main id="container" transition:animate={customTransition}>
+	<slot />
+  <footer>
+    <hr>
+    <div class="muted" style="text-align: center; margin-bottom: 2rem;">
+      <div style="margin-bottom: 1.5rem; opacity: 0.65;" class="link"><a target="_blank" href="https://sketchfab.com/heycronus">3D Model by heycronus on sketchfab</a></div>
+      Copyright &copy; 2025 Mohit Panwar. All Rights Reserved.
+    </div>
+</footer>
+</main>
+
+<style>
+  #container {
+    z-index: 5;
+    border-radius: 0.25rem;
+    backdrop-filter: blur(6px);
+    width: 35rem;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+    max-width: 35rem;
+  }
+  @media screen and (max-width: 600px) {
+    #container {
+      width: 90%;
+      max-width: 100%;
+    }
+  }
+</style>
+<style is:global>
+  @keyframes swap {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(16rem);
+    }
+  }
+</style>

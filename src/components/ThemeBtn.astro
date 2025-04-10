@@ -1,0 +1,33 @@
+<div class="bg-sec" id="modebtn" data-theme-toggle> 
+  <img data-theme-icon src={"/moon.svg"} alt="theme icon" width="20" height="20">
+</div>
+<script>
+  const animation = [
+    { transform: "translateY(0)" },
+    { transform: "translateY(0.5rem)" },
+    { transform: "translateY(0)" }
+  ];
+  const btn = document.querySelector("#modebtn");
+
+  btn?.addEventListener("click", () => {
+    btn.animate(animation, { duration: 150, iterations: 1 });
+  });
+</script>
+<style>
+  #modebtn {
+    img {
+      padding: 0.5rem;
+      filter: var(--svg-filter-alt);
+      max-height: min-content;
+      max-width: min-content;
+      transition: all 0.3s;
+    }
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    position: relative;
+    cursor: pointer;
+  }
+</style>

@@ -1,0 +1,14 @@
+---
+import Hero from '../components/Hero.astro';
+import Navbar from '../components/Navbar.astro';
+import Layout from '../layouts/Layout.astro';
+import Model from '../components/Model.astro';
+import Container from "../components/Container.astro";
+---
+<Layout title="Home">
+  <Navbar transition:persist transition:persist-props transistion:name='navbar'/>
+  <Model transition:name='model' transition:persist-props transition:persist/>
+  <Container>
+    <Hero class="noselect"/>
+  </Container>
+</Layout>

@@ -1,0 +1,161 @@
+---
+import profile from "../assets/me.jpg"
+import { hero } from "../js/constants.js";
+import Button from "./Button.astro";
+---
+<div id="greeting">
+  {hero.greeting}
+</div>
+
+<div id="title-card">
+  <div>
+    <h1 id="name">{hero.name}</h1>
+    <span id="subtitle">{hero.subtitle}</span>
+  </div>
+  <img id="profile" src={profile.src} alt="">
+</div>
+
+<div id="intro">
+  {/*<h2 class="heading">Intro</h2>*/}
+  <div style="height: 1rem;"></div>
+  <p class="paragraph">
+    &emsp;{hero.introduction.map(item => <span>{item}<br/></span>)}
+  </p>
+  <div id="workbtn">
+    <Button animated href="/works">My Work</Button>
+  </div>
+</div>
+
+<div id="skills">
+  <h2 class="heading heading-underline">My Stack</h2>
+  <div id="skillbox"> 
+  {hero.skills.map(item => 
+    <div class="skill" data-tooltip={item.text}>
+      <img src={item.icon} alt={item.text} width="40" height="40" style="width: 2rem; height: 2rem;" >
+    </div>
+  )}
+  </div>
+</div>
+
+<div id="hobbies">
+  <h2 class="heading heading-underline">I ♥{/*♥ */}</h2>
+  <p class="paragraph">&emsp;{hero.hobbies}</p>
+</div>
+
+<div id="socials">
+  <h2 class="heading heading-underline">On the web</h2>
+  <div style="margin-top: 0rem;">
+    {hero.socials.map(item => <div>
+      <Button class="sbtn" type="link" link={item.link}>
+        <img src={item.icon} alt="" class="socials-icon">
+        {item.text}
+      </Button>
+    </div>)}
+  </div>
+</div>
+
+<style>
+  #profile {
+    width: 5.75rem;
+    height: 5.75rem;
+    object-fit: cover;
+    border-radius: 100%;
+    border: 0.125rem solid white;
+  }
+  .socials-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin: 0;
+    padding: 0;
+    filter: var(--svg-filter);
+    margin-right: 0.5rem;
+  }
+  #title-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 1rem;
+    span {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    h1 {
+      margin: 0;
+      font-family: "M PLUS Rounded 1c", sans-serif;
+      font-weight: 600;
+      font-style: normal;
+      font-size: 2.25rem;
+      letter-spacing: 0.11rem;
+    }
+  }
+  #greeting {
+    position: relative;
+    padding: 0.75rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    background-color: var(--surface1);
+  }
+  #workbtn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .paragraph {
+    margin: 0;
+    line-height: 1.5rem;
+  }
+  #intro .paragraph {
+    text-align: justify;
+  }
+  #skillbox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    [data-tooltip]:hover::after {
+      display: block;
+      position: absolute;
+      content: attr(data-tooltip);
+      padding: .25em;
+      bottom: -0.75rem;
+      background-color: var(--surface1);
+      font-size: 0.75rem;
+      border-radius: 0.25rem;
+    }
+    div {
+      position: relative;
+      width: 2rem;
+      height: 2rem;
+      margin: 0.25rem;
+      padding: 1rem;
+      //border: 0.125rem solid var(--underline);
+      border-radius: 0.5rem;
+      background-color: var(--surface1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #skillbox {
+      justify-content: center;
+      div {
+        margin: 0.125rem;
+      }
+    }
+  }
+  @media screen and (max-width: 500px) {
+    #title-card {
+      flex-direction: column;
+    }
+    #title-card > div {
+      width: 100%;
+    }
+    #profile {
+      margin-top: 1.5rem;
+      width: 7.5rem;
+      height: 7.5rem;
+    }
+  }
+</style>

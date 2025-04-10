@@ -1,0 +1,45 @@
+<div id="splash-screen">
+  <img id="splash-bg" alt="" src="/background.svg"/>
+  <h1>Loading...</h1>
+</div>
+<style>
+  #splash-screen {
+    position: fixed;
+    z-index: 20;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+  }
+  #splash-bg {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    filter: blur(50px);
+  }
+  @keyframes slideUp {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+
+  .hidden {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+</style>
+<script>
+  window.onload = function () {
+  const splash = document.getElementById("splash-screen");
+    splash.classList.add("hidden");
+    splash.addEventListener("animationend", () => {
+      splash.style.display = "none";
+    });
+  };
+</script>

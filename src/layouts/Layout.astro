@@ -1,0 +1,82 @@
+---
+import { ClientRouter } from "astro:transitions";
+import LoadingScreen from "../components/LoadingScreen.astro";
+import "../styles/global.css";
+---
+<!doctype html>
+<html lang="en" transition:name="root" transition:animate={"none"}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+
+    <title>{Astro.props.title}</title>
+
+    <ClientRouter />
+	</head>
+	<body class="bg-main">
+    <LoadingScreen /> 
+    <img src="/background.svg" alt="" id="background" fetchpriority="high"/>
+
+    <slot/>
+
+	</body>
+</html>
+<style>
+	html,
+	body {
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+    font-style: normal;
+    color: var(--fg);
+
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+		margin: 0;
+    scrollbar-gutter: stable;
+	}
+	#background {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    filter: blur(36px);
+    z-index: -1;
+    opacity: 0.5;
+    background-attachment: fixed;
+    fill: #000;
+    background-color: var(--bg);
+	}
+</style>
+<script src="../js/theme.js" />
+<script>
+  import { swapFunctions } from "astro:transitions/client";
+
+  document.addEventListener('astro:before-swap', (e) => {
+    e.swap = () => mySwap(e.newDocument);
+  });
+  
+  function mySwap(doc: Document) {
+    swapFunctions.deselectScripts(doc);
+    //swapFunctions.swapRootAttributes(doc);
+    swapFunctions.swapHeadElements(doc);
+    const restoreFocusFunction = swapFunctions.saveFocus();
+    const newMain = doc.querySelector('main');
+    const oldMain = document.querySelector('main');
+
+    if (newMain && oldMain) swapFunctions.swapBodyElement(newMain, oldMain);
+    else swapFunctions.swapBodyElement(doc.body, document.body);
+    //swapFunctions.swapBodyElement(doc.body, document.body);
+    restoreFocusFunction();
+  }
+</script>
