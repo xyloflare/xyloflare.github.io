@@ -28,7 +28,8 @@ const works = await getCollection('works');
 </Layout>
 <style>
   a {
-    max-width: 47.5%;
+    width: 48%;
+    max-width: 48%;
   }
   #workbox {
     display: flex;
@@ -61,9 +62,9 @@ const works = await getCollection('works');
     }
   }
   @media screen and (max-width: 600px) {
-    .work {
-      width: 97%;
-      max-width: 97%;
+    a {
+      width: 100%;
+      max-width: 100%;
     }
     p {
       font-size: 1rem !important;
