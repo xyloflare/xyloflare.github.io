@@ -14,7 +14,7 @@
     const target = new THREE.Vector3(0.6,0.8,1)
     const initialCameraPosition = new THREE.Vector3(
       20 * Math.sin(0.2 * Math.PI),
-      10,
+      12,
       20 * Math.cos(0.2 * Math.PI)
     )
 
@@ -96,11 +96,14 @@
 <style>
 #c-container {
   position: relative;
-  height: 29rem;
+  height: 27rem;
   width: 26rem;
-  margin-bottom: -5rem;
   margin-top: -4rem;
+  margin-bottom: -2rem;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #c {
   width: 26rem;
@@ -114,7 +117,7 @@
 @media screen and (max-width: 600px) {
   #c-container {
     width: 24rem;
-    height: 27rem;
+    height: 25rem;
   }
   #c {
     width: 24rem;
@@ -124,9 +127,7 @@
 @media screen and (max-width: 380px) {
   #c-container {
     width: 20rem;
-    height: 24rem;
-    margin-top: -3rem;
-    margin-bottom: -6rem;
+    height: 21rem;
   }
   #c {
     width: 20rem;
