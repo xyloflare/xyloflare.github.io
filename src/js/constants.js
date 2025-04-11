@@ -25,7 +25,7 @@ export const hero = {
 export const nav = [
   { name: "Works", href: "/works" },
   { name: "Posts", href: "/posts" },
-  { name: "Source", href: "/source" },
+  { name: "Source", href: "https://github.com/xyloflare/xyloflare.github.io/" },
 ]
 export const works = [
   { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "Portfolio", description: "My branding site" },
