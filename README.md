@@ -1,8 +1,8 @@
 # Xyloflare's Homepage
 https://xyloflare.github.io/
-![[/public/Screenshot.png]]
+![image](https://github.com/user-attachments/assets/57014068-ccef-4efb-aa79-e15f0b1466cc)
 
-### License
+## License
 MIT License.
 
 Feel free to fork this and build your own version.
