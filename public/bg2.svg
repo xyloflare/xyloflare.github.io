@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1024" fill="none">
+  <path fill="url(#a)" fill-rule="evenodd" d="M -150.62 430.83 C -131.78 365.715 -103.04 247.95 -22.543 156.689 C 12.285 117.201 103.591 -61.696 243.082 23.064 C 317.976 68.573 242.429 191.946 470.405 379.884 C 523.711 423.828 601.066 502.249 659.613 538.894 C 754.1 598.033 822.842 675.492 859.226 762.881 C 878.91 810.156 901.979 912.897 811.159 975.866 C 710.734 1045.49 600.676 918.823 510.241 954.146 C 392.463 1000.14 418.827 988.515 304.871 1028.09 C 275.766 1038.2 201.11 1043.63 162.269 1037.74 C 113.805 1030.41 36.211 982.704 -13.942 929.053 C -79.651 858.763 -111.11 782.414 -136.04 704.744 C -164.46 616.223 -176.82 521.386 -150.62 430.83 Z" clip-rule="evenodd" style="opacity: 0.154; transform-origin: 379.763px 722.642px;"/>
+  <path fill="url(#b)" fill-rule="evenodd" d="M 883.682 -49.687 C 971.985 -75.221 1348.85 -124.45 1471.3 17.125 C 1577.8 140.262 1487.26 271.786 1543.22 442.457 C 1616.72 666.642 1300.52 977.594 1093.2 851.509 C 972.158 777.893 1063.72 651.154 878.755 525.511 C 752.515 439.76 451.925 291.037 517.878 118.536 C 584.359 -55.341 738.611 -7.738 883.682 -49.687 Z" clip-rule="evenodd" style="opacity: 0.154; transform-origin: 997.464px 327.609px;" transform="matrix(0.998933, 0.046178, -0.046178, 0.998933, -0.000001, -0.000004)"/>
+  <defs>
+    <linearGradient id="b" x1="373" x2="1995.44" y1="1100" y2="118.03" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.82744, 0.100203, -0.109688, 0.8315, 244.580895, -219.011588)">
+      <stop stop-color="#D83333" data-darkreader-inline-stopcolor="" style="--darkreader-inline-stopcolor: var(--darkreader-background-d83333, #a52020);"/>
+      <stop offset="1" stop-color="#F041FF" data-darkreader-inline-stopcolor="" style="--darkreader-inline-stopcolor: var(--darkreader-background-f041ff, #9800a5);"/>
+    </linearGradient>
+    <linearGradient id="a" x1="107.37" x2="1130.66" y1="1993.35" y2="1026.31" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.721627, -0.311229, 0.326372, 0.732728, -148.869746, 14.52166)">
+      <stop stop-color="#3245FF" data-darkreader-inline-stopcolor="" style="--darkreader-inline-stopcolor: var(--darkreader-background-3245ff, #0010ae);"/>
+      <stop offset="1" stop-color="#BC52EE" data-darkreader-inline-stopcolor="" style="--darkreader-inline-stopcolor: var(--darkreader-background-bc52ee, #6b0f96);"/>
+    </linearGradient>
+  </defs>
+</svg>
