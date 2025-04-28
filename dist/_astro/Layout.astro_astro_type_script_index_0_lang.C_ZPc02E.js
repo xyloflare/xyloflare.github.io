@@ -1,1 +1,0 @@
-import{s as n}from"./router.M49Yikof.js";document.addEventListener("astro:before-swap",e=>{e.swap=()=>a(e.newDocument)});function a(e){n.deselectScripts(e),n.swapHeadElements(e);const o=n.saveFocus(),s=e.querySelector("main"),t=document.querySelector("main");s&&t?n.swapBodyElement(s,t):n.swapBodyElement(e.body,document.body),o()}

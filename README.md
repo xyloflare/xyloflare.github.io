@@ -2,7 +2,7 @@
 https://xyloflare.github.io/
 ![image](https://github.com/user-attachments/assets/57014068-ccef-4efb-aa79-e15f0b1466cc)
 
-## Licens
+## License
 MIT License.
 
 Feel free to fork this and build your own version.
