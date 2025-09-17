@@ -21,7 +21,7 @@ function setTheme(newTheme, save) {
 function getTheme() {
   if (localStorage.getItem("theme") !== null)
     return localStorage.getItem("theme");
-  if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
-  return "light";
+  //if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  return "dark";
 }
 
