@@ -16,7 +16,6 @@ import Button from "./Button.astro";
 </div>
 
 <div id="intro">
-  {/*<h2 class="heading">Intro</h2>*/}
   <div style="height: 1rem;"></div>
   <p class="paragraph">
     &emsp;{hero.introduction.map(item => <span>{item}<br/></span>)}
@@ -89,11 +88,12 @@ import Button from "./Button.astro";
     }
   }
   #greeting {
-    position: relative;
     padding: 0.75rem;
     text-align: center;
     border-radius: 0.5rem;
     background-color: var(--surface1);
+    backdrop-filter: blur(100px);
+    z-index: 10;
   }
   #workbtn {
     width: 100%;
@@ -103,7 +103,7 @@ import Button from "./Button.astro";
   }
   .paragraph {
     margin: 0;
-    line-height: 1.5rem;
+    line-height: 1.6;
   }
   #intro .paragraph {
     text-align: justify;

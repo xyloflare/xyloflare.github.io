@@ -17,28 +17,33 @@ const customTransition = {
   backwards: anim,
 };
 ---
+
 <main id="container" transition:animate={customTransition}>
-	<slot />
+  <slot />
   <footer>
-    <hr>
+    <hr />
     <div class="muted" style="text-align: center; margin-bottom: 2rem;">
-      <div style="margin-bottom: 1.5rem; opacity: 0.65;" class="link"><a target="_blank" href="https://sketchfab.com/heycronus">3D Model by heycronus on sketchfab</a></div>
+      <div style="margin-bottom: 1.5rem; opacity: 0.65;" class="link">
+        <a target="_blank" href="https://sketchfab.com/heycronus"
+          >3D Model by heycronus on sketchfab</a>
+      </div>
       Copyright &copy; 2025 Mohit Panwar. All Rights Reserved.
     </div>
-</footer>
+  </footer>
 </main>
 
 <style>
   #container {
     z-index: 5;
     border-radius: 0.25rem;
-    backdrop-filter: blur(6px);
-    width: 35rem;
+    width: var(--container-width);
     display: flex;
     flex-direction: column;
     align-self: center;
     justify-self: center;
     max-width: 35rem;
+    position: relative;
+    backdrop-filter: blur(var(--bg-blur));
   }
   @media screen and (max-width: 600px) {
     #container {

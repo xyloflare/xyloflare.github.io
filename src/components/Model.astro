@@ -1,131 +1,154 @@
 <div id="c-container">
-<canvas id="c"/>
+  <canvas id="c"></canvas>
 </div>
-<script >
+<script>
   import * as THREE from "three";
-  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-  const modelUrl = '/model.glb';
+  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+  const modelUrl = "/model.glb";
 
   function main() {
-    const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({antialias: true, canvas, alpha: true});
+    const canvas = document.querySelector("#c");
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      canvas,
+      alpha: true,
+    });
 
-    const target = new THREE.Vector3(0.6,0.8,1)
+    const target = new THREE.Vector3(0.6, 0.8, 1);
     const initialCameraPosition = new THREE.Vector3(
       20 * Math.sin(0.2 * Math.PI),
       10,
-      20 * Math.cos(0.2 * Math.PI)
-    )
+      20 * Math.cos(0.2 * Math.PI),
+    );
 
-    const scale = 1.68;
+    const scale = window.visualViewport.width < 600 ? 1.6 : 1.9;
     const camera = new THREE.OrthographicCamera(
       -scale,
       scale,
       scale,
       -scale,
       1,
-      80
-    )
-      
-    camera.position.copy(initialCameraPosition)
-    camera.lookAt(target)
+      80,
+    );
 
-    const scene = new THREE.Scene()
+    camera.position.copy(initialCameraPosition);
+    camera.lookAt(target);
 
-    const dirLight = new THREE.DirectionalLight( 0xffffff, 1.2 );
-    dirLight.position.set( -10, 10, -10 );
-    scene.add( dirLight );
+    const scene = new THREE.Scene();
 
-    const ambientLight = new THREE.AmbientLight(0xcccccc, Math.PI)
-    scene.add(ambientLight)
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(-8, 17, -10);
+    dirLight.castShadow = true;
+    dirLight.intensity = 1.15;
+    scene.add(dirLight);
 
-    const controls = new OrbitControls(camera, renderer.domElement)
-    controls.autoRotate = true 
-    controls.target = target
+    const ambientLight = new THREE.AmbientLight(0xcccccc, Math.PI);
+    scene.add(ambientLight);
+
+    const planeGeo = new THREE.PlaneGeometry(50, 50);
+    const shadowMat = new THREE.ShadowMaterial({
+      opacity: 0.3,
+    });
+
+    const mesh = new THREE.Mesh(planeGeo, shadowMat);
+    mesh.receiveShadow = true;
+    mesh.rotation.x = Math.PI * -0.5;
+    scene.add(mesh);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.autoRotate = true;
+    controls.target = target;
 
     const loader = new GLTFLoader();
-    loader.load(modelUrl, function ( gltf ) {
-			let model = gltf.scene;
+    loader.load(
+      modelUrl,
+      function (gltf) {
+        let model = gltf.scene;
 
-      model.traverse(function(child) {
-        if (child.isMesh) {
-          child.castShadow = true;
-          child.receiveShadow = true;
-        }
-      })
+        model.traverse(function (child) {
+          if (child.isMesh) {
+            child.castShadow = true;
+            //child.receiveShadow = true;
+          }
+        });
 
-			scene.add( model );
-      animate()
-		}, undefined, function ( e ) {
-			console.error( e );
-		})
+        scene.add(model);
+        animate();
+      },
+      undefined,
+      function (e) {
+        console.error(e);
+      },
+    );
 
-    renderer.setPixelRatio(window.devicePixelRatio)
-    renderer.setSize(canvas?.clientWidth, canvas?.clientHeight)
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(canvas?.clientWidth, canvas?.clientHeight);
+    renderer.shadowMap.enabled = true;
 
-    let req = null
-    let frame = 0
+    let req = null;
+    let frame = 0;
     const animate = () => {
-      req = requestAnimationFrame(animate)
-      frame = frame <= 100 ? frame + 1 : frame
+      req = requestAnimationFrame(animate);
+      frame = frame <= 100 ? frame + 1 : frame;
       if (frame <= 100) {
-        const p = initialCameraPosition
+        const p = initialCameraPosition;
         const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 21;
-        camera.position.y = 10
-        camera.position.x = p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed)
-        camera.position.z = p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed)
-        camera.lookAt(target)
+        camera.position.y = 10;
+        camera.position.x = p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed);
+        camera.position.z = p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed);
+        camera.lookAt(target);
       } else {
-        controls.update()
+        controls.update();
       }
-      renderer.render(scene, camera)
-    }
+      renderer.render(scene, camera);
+    };
     function easeOutCirc(x) {
-      return Math.sqrt(1 - Math.pow(x - 1, 4))
+      return Math.sqrt(1 - Math.pow(x - 1, 4));
     }
   }
-  main()
+  main();
 </script>
 <style>
-#c-container {
-  position: relative;
-  height: 27rem;
-  width: 26rem;
-  margin-top: -4rem;
-  margin-bottom: -2rem;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#c {
-  width: 26rem;
-  height: 26rem;
-  margin: 0;
-  padding: 0;
-  aspect-ratio: 1;
-  position: absolute;
-}
+  #c-container {
+    position: relative;
+    height: 27rem;
+    width: fit-content;
+    margin-top: -4rem;
+    margin-bottom: -2rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #c {
+    width: var(--container-width);
+    height: 36rem;
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 1;
+    position: absolute;
+  }
 
-@media screen and (max-width: 600px) {
-  #c-container {
-    width: 24rem;
-    height: 25rem;
+  @media screen and (max-width: 600px) {
+    #c-container {
+      width: 24rem;
+      height: 25rem;
+    }
+    #c {
+      width: 25rem;
+      height: 25rem;
+      //margin-bottom: -2.25rem;
+    }
   }
-  #c {
-    width: 24rem;
-    height: 24rem;
+  @media screen and (max-width: 380px) {
+    #c-container {
+      width: 20rem;
+      height: 21rem;
+    }
+    #c {
+      width: 20rem;
+      height: 20rem;
+    }
   }
-}
-@media screen and (max-width: 380px) {
-  #c-container {
-    width: 20rem;
-    height: 21rem;
-  }
-  #c {
-    width: 20rem;
-    height: 20rem;
-  }
-}
 </style>

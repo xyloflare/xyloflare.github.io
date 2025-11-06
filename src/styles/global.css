@@ -67,7 +67,8 @@
   --primary: rgb(var(--primary-rgbv));
   --secondary: rgb(var(--secondary-rgbv));
   --underline: rgba(var(--underline-rgbv), 0.5);
-  --bg-blur: 2.5rem;
+  --bg-blur: 0.25rem;
+  --container-width: 35rem;
 }
 
 .rootbg {
