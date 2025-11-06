@@ -5,25 +5,30 @@ import "../styles/global.css";
 ---
 <!doctype html>
 <html lang="en" transition:name="root" transition:animate={"none"}>
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../js/theme.js"/>
     <title>{Astro.props.title}</title>
     <ClientRouter />
-	</head>
-	<body class="bg-main">
-    <LoadingScreen/> 
-    <div class="rootbg"/>
-    <slot/>
-	</body>
+  </head>
+  <body class="bg-main">
+    <LoadingScreen />
+    <div class="rootbg"></div>
+    <slot />
+  </body>
 </html>
 <style is:global>
-	html, body {
+  html,
+  body {
     font-family: Arial, sans-serif;
     font-weight: 400;
     font-optical-sizing: auto;
@@ -35,9 +40,9 @@ import "../styles/global.css";
     justify-items: center;
     align-items: center;
     width: 100%;
-		margin: 0;
+    margin: 0;
     scrollbar-gutter: stable;
-	}
+  }
   /*
 	.rootbg {
     opacity: 0.2;
@@ -66,21 +71,20 @@ import "../styles/global.css";
   }
 */
 </style>
-<script src="../js/theme.js" />
 <script>
   import { swapFunctions } from "astro:transitions/client";
 
-  document.addEventListener('astro:before-swap', (e) => {
+  document.addEventListener("astro:before-swap", (e) => {
     e.swap = () => mySwap(e.newDocument);
   });
-  
+
   function mySwap(doc: Document) {
     swapFunctions.deselectScripts(doc);
     //swapFunctions.swapRootAttributes(doc);
     swapFunctions.swapHeadElements(doc);
     const restoreFocusFunction = swapFunctions.saveFocus();
-    const newMain = doc.querySelector('main');
-    const oldMain = document.querySelector('main');
+    const newMain = doc.querySelector("main");
+    const oldMain = document.querySelector("main");
 
     if (newMain && oldMain) swapFunctions.swapBodyElement(newMain, oldMain);
     else swapFunctions.swapBodyElement(doc.body, document.body);
@@ -88,6 +92,3 @@ import "../styles/global.css";
     restoreFocusFunction();
   }
 </script>
-{/*
-    <img src="/bg.svg" alt="" id="background" class="rootbg" fetchpriority="high"/> 
-*/}
