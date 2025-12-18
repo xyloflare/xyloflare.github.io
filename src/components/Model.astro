@@ -1,0 +1,157 @@
+<div id="c-container">
+  <canvas id="c"></canvas>
+</div>
+<script>
+  import * as THREE from "three";
+  import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+  import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+  const modelUrl = "/model.glb";
+
+  function main() {
+    const canvas = document.querySelector("#c");
+    const renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      canvas,
+      alpha: true,
+    });
+
+    const target = new THREE.Vector3(0.6, 0.4, 1);
+    const initialCameraPosition = new THREE.Vector3(
+      20 * Math.sin(0.2 * Math.PI),
+      10,
+      20 * Math.cos(0.2 * Math.PI),
+    );
+
+    const scale = 1.68; //window.visualViewport.width < 600 ? 1.6 : 1.6;
+    const camera = new THREE.OrthographicCamera(
+      -scale,
+      scale,
+      scale,
+      -scale,
+      1,
+      80,
+    );
+
+    camera.position.copy(initialCameraPosition);
+    camera.lookAt(target);
+
+    const scene = new THREE.Scene();
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    dirLight.position.set(-10, 25, -13);
+    dirLight.castShadow = true;
+    dirLight.shadow.radius = 50
+    dirLight.intensity = 1.5;
+    dirLight.shadow.mapSize.set(512, 512);
+    scene.add(dirLight);
+
+    const ambientLight = new THREE.AmbientLight(0xcccccc, Math.PI);
+    ambientLight.intensity = 2.25;
+    scene.add(ambientLight);
+
+    const planeGeo = new THREE.PlaneGeometry(50, 50);
+    const shadowMat = new THREE.ShadowMaterial({
+      opacity: 0.6,
+    });
+
+    const mesh = new THREE.Mesh(planeGeo, shadowMat);
+    mesh.receiveShadow = true;
+    mesh.rotation.x = Math.PI * -0.5;
+    scene.add(mesh);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.autoRotate = true;
+    controls.target = target;
+
+    const loader = new GLTFLoader();
+    loader.load(
+      modelUrl,
+      function (gltf) {
+        let model = gltf.scene;
+
+        model.traverse(function (child) {
+          if (child.isMesh) {
+            child.castShadow = true;
+            //child.receiveShadow = true;
+          }
+        });
+
+        scene.add(model);
+        animate();
+      },
+      undefined,
+      function (e) {
+        console.error(e);
+      },
+    );
+
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(canvas?.clientWidth, canvas?.clientHeight);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    let req = null;
+    let frame = 0;
+    const animate = () => {
+      req = requestAnimationFrame(animate);
+      frame = frame <= 100 ? frame + 1 : frame;
+      if (frame <= 100) {
+        const p = initialCameraPosition;
+        const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 21;
+        camera.position.y = 10;
+        camera.position.x = p.x * Math.cos(rotSpeed) + p.z * Math.sin(rotSpeed);
+        camera.position.z = p.z * Math.cos(rotSpeed) - p.x * Math.sin(rotSpeed);
+        camera.lookAt(target);
+      } else {
+        controls.update();
+      }
+      renderer.render(scene, camera);
+    };
+    function easeOutCirc(x) {
+      return Math.sqrt(1 - Math.pow(x - 1, 4));
+    }
+  }
+  main();
+</script>
+<style>
+  /* #c-container { */
+  /*   position: relative; */
+  /*   height: 29rem; */
+  /*   width: fit-content; */
+  /*   margin-top: -4rem; */
+  /*   margin-bottom: -2.25rem; */
+  /*   z-index: 1; */
+  /*   display: flex; */
+  /*   align-items: center; */
+  /*   justify-content: center; */
+  /* } */
+  #c {
+    width: 40rem;
+    height: max-content;
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 1;
+  }
+  /**/
+  /* @media screen and (max-width: 600px) { */
+  /*   #c-container { */
+  /*     width: 24rem; */
+  /*     height: 25rem; */
+  /*   } */
+  /*   #c { */
+  /*     width: 25rem; */
+  /*     height: 25rem; */
+  /*     //margin-bottom: -2.25rem; */
+  /*   } */
+  /* } */
+  /* @media screen and (max-width: 380px) { */
+  /*   #c-container { */
+  /*     width: 20rem; */
+  /*     height: 21rem; */
+  /*   } */
+  /*   #c { */
+  /*     width: 20rem; */
+  /*     height: 20rem; */
+  /*   } */
+  /* } */
+</style>

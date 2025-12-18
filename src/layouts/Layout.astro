@@ -1,0 +1,46 @@
+---
+import "@/styles/global.css";
+---
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=M+PLUS+Rounded+1c&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>{Astro.props.title || "Home"}</title>
+  </head>
+  <body>
+    <div class="fixed -z-10 m-0 w-full h-screen opacity-80">
+      <img src="/corner.svg" alt="" width="100" class="absolute top-10 left-10" />
+      <img
+        src="/corner.svg"
+        alt=""
+        width="100"
+        class="transform-[scaleX(-1)] absolute justify-self-end top-10 right-10"
+      />
+      <img
+        src="/corner.svg"
+        alt=""
+        width="100"
+        class="transform-[scaleY(-1)] absolute bottom-10 left-10"
+      />
+      <img
+        src="/corner.svg"
+        alt=""
+        width="100"
+        class="transform-[scale(-1)] absolute justify-self-end bottom-10 right-10"
+      />
+    </div>
+    <div class="p-16 h-screen overflow-y-auto">
+      <slot />
+    </div>
+  </body>
+</html>
