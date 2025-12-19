@@ -1,7 +1,18 @@
-<pre class="text-2xl font-inter tracking-wide">
-  I'm a freelance and a full-stack developer with a 
-  passion for building digital services/stuff i want.
-  I have a knack for all things launching products,
-  from planning and designing all the way to solving
-  real-life problems with code.
-</pre>
+---
+import Projects from "@/components/Projects.jsx";
+import TechList from "@/components/TechList.jsx";
+---
+
+<p class="font-inter">
+  &emsp;I'm a freelance and a full-stack developer with a passion for building
+  digital services/stuff i want. I have a knack for all things launching
+  products, from planning and designing all the way to solving real-life
+  problems with code.
+</p>
+<br />
+<div>
+  <div class="font-normal">Tech i use</div>
+  <TechList client:load/>
+</div>
+<br />
+<Projects client:load />

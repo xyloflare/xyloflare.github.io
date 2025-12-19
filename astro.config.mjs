@@ -14,7 +14,7 @@ export default defineConfig({
   server: { port: 4321, host: true },
   vite: {
     server: {
-      allowedHosts: "ohio-example.gl.at.ply.gg",
+      allowedHosts: ["ohio-example.gl.at.ply.gg"],
     },
     plugins: [tailwindcss()],
   },

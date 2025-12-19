@@ -6,16 +6,22 @@ import Content from "@/components/Content.astro";
 
 <Layout>
   <div class="grid grid-cols-2 grow gap-2 h-full">
-    <div class="flex flex-col items-center">
+    <div class="relative flex flex-col items-center justify-end">
       <Model client:load />
-      <div class="w-[82%] rounded-2xl px-2 py-4 -mt-32 backdrop-blur-2xl">
+      <div class="w-[82%] rounded-2xl px-2 py-4 backdrop-blur-2xl absolute bottom-[2%] self-center">
         <h1 class="text-6xl font-mplus font-extrabold font-inter">
           Mohit Panwar
         </h1>
-        <h2 class="text-2xl opacity-80 font-inter">
+        <h2 class="text-2xl mt-0.5 opacity-80 font-inter">
           Software Developer - Digital Craftsman & Freethinker
         </h2>
         <div class="mt-6 flex gap-5 h-8">
+          <img
+            src="/github-mark-white.svg"
+            alt=""
+            width="32"
+            class="aspect-square h-full"
+          />
           <img
             src="/linkedin.svg"
             alt=""
@@ -28,16 +34,12 @@ import Content from "@/components/Content.astro";
             width="32"
             class="aspect-square h-full"
           />
-          <img
-            src="/github-mark-white.svg"
-            alt=""
-            width="32"
-            class="aspect-square h-full"
-          />
         </div>
       </div>
     </div>
-    <div class="py-10 pr-20 pl-10 text-xl h-full">
+    <div
+      class="py-10 px-20 font-inter tracking-wide text-2xl font-light h-full overflow-y-auto "
+    >
       <Content />
     </div>
   </div>
