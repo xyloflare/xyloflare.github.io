@@ -43,7 +43,7 @@ const Projects = () => {
             initial="hidden"
             animate={{scaleY: 1}}
             whileHover="hover"
-            class="py-4 border-t relative group text-end tracking-wider "
+            class={`py-4 border-t relative group text-end tracking-wider ${projects.length == idx+1 && 'border-b'}`}
             variants={parentVariants}
           >
             <motion.img

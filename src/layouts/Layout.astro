@@ -1,6 +1,7 @@
 ---
 import "@/styles/global.css";
 ---
+
 <html lang="en" class="dark">
   <head>
     <meta charset="utf-8" />
@@ -18,28 +19,37 @@ import "@/styles/global.css";
     <title>{Astro.props.title || "Home"}</title>
   </head>
   <body>
-    <div class="fixed -z-10 m-0 w-full h-screen opacity-80">
-      <img src="/corner.svg" alt="" width="100" class="absolute top-12 left-12" />
+    <div
+      class="fixed -z-10 m-0 w-full h-screen opacity-80 not-lg:scale-110 not-lg:h -[99vh]  scale-100"
+    >
       <img
         src="/corner.svg"
         alt=""
         width="100"
-        class="transform-[scaleX(-1)] absolute justify-self-end top-12 right-12"
+        class="absolute top-12 left-12 not-md:w-12 not-md:left-10 not-md:top-14"
       />
       <img
         src="/corner.svg"
         alt=""
         width="100"
-        class="transform-[scaleY(-1)] absolute bottom-12 left-12"
+        class="transform-[scaleX(-1)] absolute justify-self-end top-12 right-12 not-md:w-12 not-md:right-10 not-md:top-14"
       />
       <img
         src="/corner.svg"
         alt=""
         width="100"
-        class="transform-[scale(-1)] absolute justify-self-end bottom-12 right-12"
+        class="transform-[scaleY(-1)] absolute bottom-12 left-12 not-md:w-12 not-md:bottom-14 not-md:left-10"
+      />
+      <img
+        src="/corner.svg"
+        alt=""
+        width="100"
+        class="transform-[scale(-1)] absolute justify-self-end bottom-12 right-12 not-md:w-12 not-md:right-10 not-md:bottom-14"
       />
     </div>
-    <div class="p-18 h-screen">
+    <div
+      class="h-[80%] not-lg:h-[89%] w-full flex justify-center items-center fixed -translate-y-[50%] top-[50%] overflow-x-hidden not-xl:overflow-y-scroll"
+    >
       <slot />
     </div>
   </body>

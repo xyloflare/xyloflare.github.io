@@ -32,5 +32,8 @@ export const projects = [
   { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "CRUD API in Golang", description: "A restful crud api written in golang" },
   { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "Android Launcher", description: "Extensively customizable android launcher for tablets with modular UI framework and full freedom to create custom components" },
   { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "2D Game", description: "Among us is way too sus, so i made my own where everyone is imposter" },
+  { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "Portfolio", description: "My branding site" },
+  { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "Portfolio", description: "My branding site" },
+  { image: "https://t4.ftcdn.net/jpg/01/70/93/27/360_F_170932733_VOHGeaH5AjrVCXBVryEwVgwhArv2wNNH.jpg", title: "Portfolio", description: "My branding site" },
 ]
 

@@ -5,40 +5,51 @@ import Content from "@/components/Content.astro";
 ---
 
 <Layout>
-  <div class="grid grid-cols-2 grow gap-2 h-full">
-    <div class="relative flex flex-col items-center justify-end">
-      <Model client:load />
-      <div class="w-[82%] rounded-2xl px-2 py-4 backdrop-blur-2xl absolute bottom-[2%] self-center">
-        <h1 class="text-6xl font-mplus font-extrabold font-inter">
+  <div
+    class="flex flex-col h-full max-h-full m-0 not-lg:w-[86%] w-[92%] xl:grid xl:grid-cols-2 px-6 xl:px-0 xl:gap-2 "
+  >
+    <div
+      class="relative flex flex-col items-center justify-end min-h-[62vh]"
+    >
+      <Model client:load class="self-center min-h-[48vh]" />
+      <div
+        class="w-full lg:w-[82%] rounded-2xl p-2 pb-6 backdrop-blur-sm self-center"
+      >
+        <h1
+          class="text-4xl w-full md:text-6xl font-mplus font-extrabold font-inter"
+        >
           Mohit Panwar
         </h1>
-        <h2 class="text-2xl mt-0.5 opacity-80 font-inter">
-          Software Developer - Digital Craftsman & Freethinker
+        <h2 class="text-md md:text-2xl lg:mt-0.5 opacity-80 font-inter">
+          Software Developer - Digital Craftsman
         </h2>
-        <div class="mt-6 flex gap-5 h-8">
+        <div class="mt-6 flex gap-5 h-fit">
           <img
             src="/github-mark-white.svg"
             alt=""
             width="32"
+            height="32"
             class="aspect-square h-full"
           />
           <img
             src="/linkedin.svg"
             alt=""
             width="32"
+            height="32"
             class="aspect-square h-full"
           />
           <img
             src="/Discord-Symbol-White.svg"
             alt=""
             width="32"
+            height="32"
             class="aspect-square h-full"
           />
         </div>
       </div>
     </div>
     <div
-      class="py-10 px-20 font-inter tracking-wide text-2xl font-light h-full overflow-y-auto "
+      class="py-6 px-0 lg:px-20 font-inter tracking-wide text-lg lg:text-2xl font-light xl:overflow-y-scroll"
     >
       <Content />
     </div>
