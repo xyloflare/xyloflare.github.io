@@ -48,19 +48,19 @@ export const nav = [
 ];
 export const projects = [
   {
-    image: "/projects/diamondrush.png",
+    image: "/projects/diamondrush.webp",
     title: "Diamond Rush",
     description: "Hand made web replica of the retro game Diamond Rush",
   },
   {
     image:
-      "/projects/asouliya.png",
+      "/projects/asouliya.webp",
     title: "Asouliya",
     description:
       "A Discord bot with chat xp and level system and integrated AI and additional code evaluation capabitlities",
   },
   {
-    image: "/projects/kolamgen.png",
+    image: "/projects/kolamgen.webp",
     title: "Kolam Generator",
     description: "Just a fun lil project to generate pully kolams",
   },
