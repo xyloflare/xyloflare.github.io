@@ -2,15 +2,14 @@
 import Layout from "@/layouts/Layout.astro";
 import Model from "@/components/Model.astro";
 import Content from "@/components/Content.astro";
+import { about } from "@/js/content";
 ---
 
 <Layout>
   <div
-    class="flex flex-col h-full max-h-full m-0 not-lg:w-[86%] w-[92%] xl:grid xl:grid-cols-2 px-6 xl:px-0 xl:gap-2 "
+    class="flex flex-col h-full max-h-full m-0 not-lg:w-[86%] w-[92%] xl:grid xl:grid-cols-2 px-6 xl:px-0 xl:gap-2"
   >
-    <div
-      class="relative flex flex-col items-center justify-end min-h-[62vh]"
-    >
+    <div class="relative flex flex-col items-center justify-end min-h-[62vh]">
       <Model client:load class="self-center min-h-[48vh]" />
       <div
         class="w-full lg:w-[82%] rounded-2xl p-2 pb-6 backdrop-blur-sm self-center"
@@ -18,33 +17,26 @@ import Content from "@/components/Content.astro";
         <h1
           class="text-4xl w-full md:text-6xl font-mplus font-extrabold font-inter"
         >
-          Mohit Panwar
+          {about.name}
         </h1>
         <h2 class="text-md md:text-2xl lg:mt-0.5 opacity-80 font-inter">
-          Software Developer - Digital Craftsman
+          {about.subtitle}
         </h2>
         <div class="mt-6 flex gap-5 h-fit">
-          <img
-            src="/github-mark-white.svg"
-            alt=""
-            width="32"
-            height="32"
-            class="aspect-square h-full"
-          />
-          <img
-            src="/linkedin.svg"
-            alt=""
-            width="32"
-            height="32"
-            class="aspect-square h-full"
-          />
-          <img
-            src="/Discord-Symbol-White.svg"
-            alt=""
-            width="32"
-            height="32"
-            class="aspect-square h-full"
-          />
+          {
+            about.socials.map((item) => (
+              <a href={item.link} class="no-underline text-inherit m-0 p-0">
+                <img
+                  src={item.icon}
+                  alt={item.alt || ''}
+                  width="32"
+                  height="32"
+                  class="aspect-square h-full"
+                />
+              </a>
+            ))
+          }
+          
         </div>
       </div>
     </div>

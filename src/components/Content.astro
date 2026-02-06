@@ -1,18 +1,22 @@
 ---
 import Projects from "@/components/Projects.jsx";
 import TechList from "@/components/TechList.jsx";
+import { about } from "@/js/content";
 ---
 
 <p class="font-inter">
-  &emsp;I'm a freelance and a full-stack developer with a passion for building
-  digital services/stuff i want. I have a knack for all things launching
-  products, from planning and designing all the way to solving real-life
-  problems with code.
+  &emsp;{about.introduction}
 </p>
 <br />
 <div>
   <div class="font-normal mb-1.5">Tech i use</div>
-  <TechList client:load/>
+  <TechList client:load />
 </div>
 <br />
 <Projects client:load />
+<br />
+<br />
+<div class="opacity-65 text-lg w-full">
+  Copyright © 2025 Mohit Panwar. All Rights Reserved.
+</div>
+<br />

@@ -51,7 +51,7 @@ const Projects = () => {
               src={item.image}
               width="100"
               alt=""
-              class="absolute top-[50%] -translate-y-[50%] border left-4 w-72 rounded-2xl z-10 aspect-video pointer-events-none"
+              class="absolute top-[50%] -translate-y-[50%] border left-4 w-72 rounded-2xl z-10 aspect-video pointer-events-none object-cover"
             />
             {item.title}
           </motion.div>

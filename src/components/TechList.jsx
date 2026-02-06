@@ -23,14 +23,14 @@ const TechList = () => {
           >
             <img
               src={item.icon}
-              alt=""
+              alt={item.text}
               width="28"
               height="28"
               className="inline aspect-square opacity-90"
             />
             <motion.div
               variants={tv}
-              className="absolute text-xs font-normal rounded-sm px-1 bottom-[50%] translate-y-full backdrop-blur-sm h-fit w-fit z-20"
+              className="absolute text-xs font-normal rounded-sm px-1 bottom-[-4%] translate-y-full backdrop-blur-sm h-fit z-20 line-clamp-1 w-max "
             >
               {item.text}
             </motion.div>
